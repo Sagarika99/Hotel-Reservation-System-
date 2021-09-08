@@ -33,12 +33,10 @@ public class HotelReservationSystemTest {
 		hotel.addHotel(lakewood);
 		hotel.addHotel(bridgewood);
 		hotel.addHotel(ridgewood);
-		
-		//hotel.toPrint();
 	}
 	
     @Test
-    public void nameAndPrice_OfChipestHotels() {
+    public void whenGivenDateRange_ShouldReturnCheapestHotel() {
     	DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMMyyyy");
     	Scanner sc = new Scanner(System.in);
     	System.out.println("Start Date:");
