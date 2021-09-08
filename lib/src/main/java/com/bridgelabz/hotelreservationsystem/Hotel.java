@@ -15,4 +15,8 @@ public class Hotel {
 		this.rates = rates;
 	}
 	
+	public HashMap<CustomerType, Rates> getRates(){
+		return rates;
+	}
+	
 }
