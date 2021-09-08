@@ -3,10 +3,8 @@ package com.bridgelabz.hotelreservationsystem;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.Scanner;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
 
 public class HotelReservationSystemTest {
 
@@ -53,10 +51,14 @@ public class HotelReservationSystemTest {
     
     @Test
     public void whenGivenDateRange_ShouldReturnBestRatedHotel() {
+    	hotel.bestRatedHotel();
+    }
+		
+    @Test
+    public void whenGivenDateRange_ShouldReturnBestRatedCheapestHotelForRewarded() {
     	DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMMyyyy");    	
     	LocalDate d1 = LocalDate.of(2020,9,11);
     	LocalDate d2 = LocalDate.of(2020,9,12);
-    	hotel.bestRatedHotel(d1,d2);
+        hotel.cheapestBestRatedRewarded(d1,d2);
     }
-		
 }
