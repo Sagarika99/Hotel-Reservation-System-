@@ -50,5 +50,13 @@ public class HotelReservationSystemTest {
     	LocalDate d2 = LocalDate.of(2020,9,12);
         hotel.bestRatingCheapestHotel(d1,d2);
     }
+    
+    @Test
+    public void whenGivenDateRange_ShouldReturnBestRatedHotel() {
+    	DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMMyyyy");    	
+    	LocalDate d1 = LocalDate.of(2020,9,11);
+    	LocalDate d2 = LocalDate.of(2020,9,12);
+    	hotel.bestRatedHotel(d1,d2);
+    }
 		
 }
