@@ -36,10 +36,21 @@ public class HotelReservationSystemTest {
 	}
 	
     @Test
-    public void whenGivenDateRange_ShouldReturnCheapestHotel() {    	
-    	LocalDate d1 = LocalDate.of(2020,9,11);
-    	LocalDate d2 = LocalDate.of(2020,9,12);
-        hotel.cheapeastHotel(d1,d2);
+    public void whenGivenDateRange_ShouldReturnCheapestHotel() throws HotelException {    	
+    	String date1 = "2020-09-11";
+    	String date2 = "2020-09-12";
+    	
+    	try {
+    		hotel.validateInputDate(date1);
+    		hotel.validateInputDate(date2);
+    		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        	LocalDate d1 = LocalDate.parse(date1,df);
+        	LocalDate d2 = LocalDate.parse(date2,df);
+        	hotel.bestRatingCheapestHotel(d1,d2);
+    	}
+    	catch (Exception e) {
+    		throw new HotelException("Invalid date");
+    	}
     }
     
     @Test
@@ -60,6 +71,8 @@ public class HotelReservationSystemTest {
     	String date2 = "2020-09-12";
     	
     	try {
+    		hotel.validateInputDate(date1);
+    		hotel.validateInputDate(date2);
     		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         	LocalDate d1 = LocalDate.parse(date1,df);
         	LocalDate d2 = LocalDate.parse(date2,df);
