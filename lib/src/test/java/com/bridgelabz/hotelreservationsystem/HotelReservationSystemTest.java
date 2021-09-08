@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Scanner;
-
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 
 public class HotelReservationSystemTest {
 
@@ -21,7 +21,7 @@ public class HotelReservationSystemTest {
 		Hotel lakewood = new Hotel("Lakewood",3 ,customerTypeRateMap);
 		
 		customerTypeRateMap = new HashMap<CustomerType, Rates>();
-		customerTypeRateMap.put(CustomerType.REGULAR, new Rates(160,60));
+		customerTypeRateMap.put(CustomerType.REGULAR, new Rates(150,50));
 		customerTypeRateMap.put(CustomerType.REWARDS, new Rates(110,50));
 		Hotel bridgewood = new Hotel("Bridgewood",4 ,customerTypeRateMap);
 				
@@ -37,17 +37,18 @@ public class HotelReservationSystemTest {
 	
     @Test
     public void whenGivenDateRange_ShouldReturnCheapestHotel() {
-    	DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMMyyyy");
-    	Scanner sc = new Scanner(System.in);
-    	System.out.println("Start Date:");
-    	String date1 = sc.nextLine();
-    	
-    	System.out.println("End Date:");
-    	String date2 = sc.nextLine();
-    	
-        LocalDate d1 = LocalDate.parse(date1,df);
-        LocalDate d2 = LocalDate.parse(date2,df);
+    	DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMMyyyy");    	
+    	LocalDate d1 = LocalDate.of(2020,9,11);
+    	LocalDate d2 = LocalDate.of(2020,9,12);
         hotel.cheapeastHotel(d1,d2);
+    }
+    
+    @Test
+    public void whenGivenDateRange_ShouldReturnBestRatingCheapestHotel() {
+    	DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMMyyyy");    	
+    	LocalDate d1 = LocalDate.of(2020,9,11);
+    	LocalDate d2 = LocalDate.of(2020,9,12);
+        hotel.bestRatingCheapestHotel(d1,d2);
     }
 		
 }
