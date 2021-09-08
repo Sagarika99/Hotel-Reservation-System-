@@ -3,6 +3,8 @@ package com.bridgelabz.hotelreservationsystem;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Scanner;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,16 +36,14 @@ public class HotelReservationSystemTest {
 	}
 	
     @Test
-    public void whenGivenDateRange_ShouldReturnCheapestHotel() {
-    	DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMMyyyy");    	
+    public void whenGivenDateRange_ShouldReturnCheapestHotel() {    	
     	LocalDate d1 = LocalDate.of(2020,9,11);
     	LocalDate d2 = LocalDate.of(2020,9,12);
         hotel.cheapeastHotel(d1,d2);
     }
     
     @Test
-    public void whenGivenDateRange_ShouldReturnBestRatingCheapestHotel() {
-    	DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMMyyyy");    	
+    public void whenGivenDateRange_ShouldReturnBestRatingCheapestHotel() {    	
     	LocalDate d1 = LocalDate.of(2020,9,11);
     	LocalDate d2 = LocalDate.of(2020,9,12);
         hotel.bestRatingCheapestHotel(d1,d2);
@@ -55,10 +55,20 @@ public class HotelReservationSystemTest {
     }
 		
     @Test
-    public void whenGivenDateRange_ShouldReturnBestRatedCheapestHotelForRewarded() {
-    	DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMMyyyy");    	
-    	LocalDate d1 = LocalDate.of(2020,9,11);
-    	LocalDate d2 = LocalDate.of(2020,9,12);
-        hotel.cheapestBestRatedRewarded(d1,d2);
+    public void whenGivenDateRange_ShouldReturnBestRatedCheapestHotelForRewarded() throws HotelException {
+    	String date1 = "2020-09-11";
+    	String date2 = "2020-09-12";
+    	
+    	try {
+    		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        	LocalDate d1 = LocalDate.parse(date1,df);
+        	LocalDate d2 = LocalDate.parse(date2,df);
+        	hotel.cheapestBestRatedRewarded(d1,d2);
+    	}
+    	catch (Exception e) {
+    		throw new HotelException("Invalid date");
+    	}
+
+        
     }
 }

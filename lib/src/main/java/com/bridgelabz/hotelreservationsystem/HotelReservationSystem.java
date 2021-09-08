@@ -1,5 +1,6 @@
 package com.bridgelabz.hotelreservationsystem;
 
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class HotelReservationSystem {
 	
@@ -154,8 +156,16 @@ public class HotelReservationSystem {
        else {
            int n = ratingsHotelRewarded.indexOf(Collections.max(ratingsHotelRewarded));
            System.out.println("Cheapest hotel with best Ratings for Rewarded: " + hotels.get(n).hotelName + " Ratings: " +hotels.get(n).hotelRating+ " with total rates: " +priceRewarded[n]);
-       }
-
-       
+       }       
+    }
+    
+    public boolean validateInputDate (String date) throws HotelException{
+    	try {
+    		Pattern p = Pattern.compile("((19|20)\\d\\d)-(0?[1-9]|1?[012])-(0?[1-9]|[12][0-9]|3[01])");
+    		return p.matcher(date).matches();
+    	}
+    	catch(Exception e) {
+    		throw new HotelException("Invalid date");
+    	}
     }
 }
